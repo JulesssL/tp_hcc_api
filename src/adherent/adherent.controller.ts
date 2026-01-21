@@ -1,4 +1,3 @@
-// src/adherent/adherent.controller.ts
 import { Controller, Post, Body, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { AdherentService } from './adherent.service';
 import { CreateAdherentDto } from './config/adherent.dto';

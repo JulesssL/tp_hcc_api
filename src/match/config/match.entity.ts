@@ -1,3 +1,4 @@
+// src/match/config/match.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
 import { Adherent } from '../../adherent/config/adherent.entity';
 
@@ -15,7 +16,7 @@ export class Match {
   @Column({ nullable: true })
   scoreFinal: string;
 
-  @ManyToMany(() => Adherent)
+  @ManyToMany(() => Adherent, (adherent) => adherent.matchs)
   @JoinTable() 
   participants: Adherent[];
 }
