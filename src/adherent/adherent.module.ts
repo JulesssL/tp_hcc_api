@@ -8,5 +8,6 @@ import { AdherentService } from './adherent.service';
   imports: [TypeOrmModule.forFeature([Adherent])],
   controllers: [AdherentController],
   providers: [AdherentService],
+  exports: [AdherentService],
 })
 export class AdherentModule {}

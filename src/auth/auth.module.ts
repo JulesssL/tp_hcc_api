@@ -1,21 +1,20 @@
+// src/auth/auth.module.ts
 import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
 import { AuthService } from './auth.service';
+import { AdherentModule } from '../adherent/adherent.module'; // Import Adherent
 import { AuthController } from './auth.controller';
-import { UsersModule } from '../users/users.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
-    UsersModule,
-    PassportModule,
+    AdherentModule, 
     JwtModule.register({
-      secret: 'SECRET', // À remplacer par une variable d'environnement dans un projet réel
-      signOptions: { expiresIn: '24h' },
+      global: true,
+      secret: 'SECRET', // Utiliser une vraie clé secrète en production
+      signOptions: { expiresIn: '1h' },
     }),
   ],
   providers: [AuthService],
   controllers: [AuthController],
-  exports: [AuthService],
 })
 export class AuthModule {}

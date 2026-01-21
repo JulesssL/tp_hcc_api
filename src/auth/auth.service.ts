@@ -1,16 +1,16 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { UsersService } from '../users/users.service';
+import { AdherentService } from '../adherent/adherent.service';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private usersService: UsersService,
+    private adherentService: AdherentService,
     private jwtService: JwtService
   ) {}
 
   async login(email: string, pass: string) {
-    const user = await this.usersService.findByEmail(email);
+    const user = await this.adherentService.findByEmail(email); 
     
     if (user?.password !== pass) {
       throw new UnauthorizedException('Identifiants invalides');

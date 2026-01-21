@@ -16,5 +16,17 @@ export class AdherentService {
     return this.adherentRepository.save(newAdherent);
   }
 
-  
+  async findByEmail(email: string): Promise<Adherent | null> {
+    return await this.adherentRepository.findOne({ where: { email } });
+  }
+
+  async findAll(): Promise<Adherent[]> {
+    return await this.adherentRepository.find();
+  }
+
+  async findOne(id: number): Promise<Adherent | null> {
+    return await this.adherentRepository.findOne({ where: { id } });
+  }
+
+
 }
