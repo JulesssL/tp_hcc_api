@@ -1,3 +1,4 @@
+// src/adherent/adherent.controller.ts
 import { Controller, Post, Body, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { AdherentService } from './adherent.service';
 import { CreateAdherentDto } from './config/adherent.dto';
@@ -20,5 +21,4 @@ export class AdherentController {
   async findOne(@Param('id', ParseIntPipe) id: number) {
     return this.adherentService.findOne(id);
   }
-
 }

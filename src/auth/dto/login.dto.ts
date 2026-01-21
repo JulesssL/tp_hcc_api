@@ -6,5 +6,5 @@ export class LoginDto {
 
   @IsString()
   @MinLength(1, { message: 'Le mot de passe est requis' })
-  motDePasse: string;
+  password: string;
 }

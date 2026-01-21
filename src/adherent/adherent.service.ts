@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Adherent, Role } from './config/adherent.entity';
+import { Adherent } from './config/adherent.entity';
 import { CreateAdherentDto } from './config/adherent.dto';
 
 @Injectable()
@@ -9,7 +9,7 @@ export class AdherentService {
   constructor(
     @InjectRepository(Adherent)
     private adherentRepository: Repository<Adherent>,
-  ) {}
+  ) { }
 
   async create(createAdherentDto: CreateAdherentDto): Promise<Adherent> {
     const newAdherent = this.adherentRepository.create(createAdherentDto);
@@ -21,12 +21,13 @@ export class AdherentService {
   }
 
   async findAll(): Promise<Adherent[]> {
-    return await this.adherentRepository.find();
+    return await this.adherentRepository.find({ relations: ['matchs'] });
   }
 
   async findOne(id: number): Promise<Adherent | null> {
-    return await this.adherentRepository.findOne({ where: { id } });
+    return await this.adherentRepository.findOne({
+      where: { id },
+      relations: ['matchs']
+    });
   }
-
-
 }

@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
+import { Match } from '../../match/config/match.entity';
+
 
 export enum Role {
   COACH = 'coach',
@@ -31,4 +33,7 @@ export class Adherent {
 
   @Column({ type: 'date', default: () => 'CURRENT_DATE' })
   dateInscription: Date;
+
+  @ManyToMany(() => Match, (match) => match.participants)
+  matchs: Match[];
 }

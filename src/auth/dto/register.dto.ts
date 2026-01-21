@@ -13,7 +13,7 @@ export class RegisterDto {
     email: string;
 
     @IsString()
-    motDePasse: string;
+    password: string;
 
     @IsEnum(['coach', 'contributeur', 'joueur'], { message: 'Le rôle doit être coach, contributeur ou joueur' })
     role: 'coach' | 'contributeur' | 'joueur';
